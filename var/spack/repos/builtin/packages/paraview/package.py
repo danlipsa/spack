@@ -189,6 +189,7 @@ class Paraview(CMakePackage):
             '-DVTK_USE_X:BOOL=%s' % nvariant_bool('+osmesa'),
             '-DVTK_RENDERING_BACKEND:STRING=%s' % rendering,
             '-DPARAVIEW_INSTALL_DEVELOPMENT_FILES:BOOL=%s' % includes,
+            '-DPARAVIEW_ENABLE_MOMENTINVARIANTS:BOOL=ON',
             '-DBUILD_TESTING:BOOL=OFF',
             '-DBUILD_EXAMPLES:BOOL=%s' % variant_bool('+examples'),
             '-DVTK_USE_SYSTEM_FREETYPE:BOOL=ON',

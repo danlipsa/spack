@@ -34,12 +34,12 @@ class Ascent(Package):
     simulations."""
 
     homepage = "https://github.com/Alpine-DAV/ascent"
-    git      = "https://github.com/Alpine-DAV/ascent.git"
+    git      = "https://github.com/danlipsa/ascent.git"
 
     maintainers = ['cyrush']
 
     version('develop',
-            branch='develop',
+            branch='moment-invariants',
             submodules=True)
 
     ###########################################################################
