@@ -37,7 +37,7 @@ class Vtkh(Package):
     git      = "https://github.com/Alpine-DAV/vtk-h.git"
     maintainers = ['cyrush']
 
-    version('develop', branch='develop', submodules=True)
+    version('develop', commit='a8a851940a26c916d5d3a50fdbadb7ad8f21da96', submodules=True)
     version('0.1.0', branch='develop', tag='v0.1.0', submodules=True)
 
     variant("shared", default=True, description="Build vtk-h as shared libs")
@@ -70,7 +70,7 @@ class Vtkh(Package):
     depends_on("vtkm@master+cuda~tbb+openmp~shared", when="@develop+cuda+openmp~shared")
     depends_on("vtkm@master+cuda~tbb~openmp~shared", when="@develop+cuda~openmp~shared")
 
-    patch('vtkm_lagrange_cuda_fix.patch')
+
 
     def install(self, spec, prefix):
         with working_dir('spack-build', create=True):
