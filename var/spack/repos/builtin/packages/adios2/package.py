@@ -17,6 +17,7 @@ class Adios2(CMakePackage):
     maintainers = ['ax3l', 'chuckatkins', 'williamfgc']
 
     version('master', branch='master')
+    version('adis', commit='e36391e354')
     version('2.6.0', sha256='45b41889065f8b840725928db092848b8a8b8d1bfae1b92e72f8868d1c76216c')
     version('2.5.0', sha256='7c8ff3bf5441dd662806df9650c56a669359cb0185ea232ecb3578de7b065329')
     version('2.4.0', sha256='50ecea04b1e41c88835b4b3fd4e7bf0a0a2a3129855c9cc4ba6cf6a1575106e2')
