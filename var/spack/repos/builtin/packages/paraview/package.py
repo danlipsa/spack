@@ -20,6 +20,8 @@ class Paraview(CMakePackage, CudaPackage):
     maintainers = ['chuckatkins', 'danlipsa']
 
     version('develop', branch='master', submodules=True)
+    version('5.8.1', sha256='8bd775d60215fb5266cd9cb4b58e02d36cb78e1ae79b57b2b6380a34999a5c20',
+            extension='tar.xz')
     version('5.8.0', sha256='219e4107abf40317ce054408e9c3b22fb935d464238c1c00c0161f1c8697a3f9')
     version('5.7.0', sha256='e41e597e1be462974a03031380d9e5ba9a7efcdb22e4ca2f3fec50361f310874')
     version('5.6.2', sha256='1f3710b77c58a46891808dbe23dc59a1259d9c6b7bb123aaaeaa6ddf2be882ea')
@@ -43,6 +45,7 @@ class Paraview(CMakePackage, CudaPackage):
     variant('osmesa', default=False, description='Enable OSMesa support')
     variant('qt', default=False, description='Enable Qt (gui) support')
     variant('opengl2', default=True, description='Enable OpenGL2 backend')
+    variant('adis', default=False, description='Enable ADIS reader')
     variant('examples', default=False, description="Build examples")
     variant('hdf5', default=False, description="Use external HDF5")
     variant('shared', default=True,
@@ -87,6 +90,8 @@ class Paraview(CMakePackage, CudaPackage):
     depends_on('libxt', when='~osmesa platform=linux')
     conflicts('+qt', when='+osmesa')
 
+    depends_on('adios2@adis', when='+adis')
+
     depends_on('bzip2')
     depends_on('freetype')
     # depends_on('hdf5+mpi', when='+mpi')
@@ -123,8 +128,10 @@ class Paraview(CMakePackage, CudaPackage):
             return _urlfmt.format(version.up_to(2), version, '-source', 'gz')
         elif version < Version('5.6.1'):
             return _urlfmt.format(version.up_to(2), version, '', 'gz')
-        else:
+        elif version < Version('5.8.1'):
             return _urlfmt.format(version.up_to(2), version, '', 'xz')
+        else:
+            return "https://data.kitware.com/api/v1/file/5e9f67c59014a6d84e209c0a/download"
 
     @property
     def paraview_subdir(self):
@@ -244,6 +251,12 @@ class Paraview(CMakePackage, CudaPackage):
                 '-DMPI_CXX_COMPILER:PATH=%s' % spec['mpi'].mpicxx,
                 '-DMPI_C_COMPILER:PATH=%s' % spec['mpi'].mpicc,
                 '-DMPI_Fortran_COMPILER:PATH=%s' % spec['mpi'].mpifc
+            ])
+
+        if '+adis' in spec:
+            cmake_args.extend([
+                '-DPARAVIEW_ENABLE_ADIS:BOOL=ON',
+                '-DADIOS2_DIR=%s' % spec['adios2'].prefix
             ])
 
         if '+shared' in spec:
