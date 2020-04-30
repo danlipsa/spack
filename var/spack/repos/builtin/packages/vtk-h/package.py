@@ -40,6 +40,7 @@ class VtkH(Package, CudaPackage):
     maintainers = ['cyrush']
 
     version('develop', branch='develop', submodules=True)
+    version('0.5.6', sha256="c78c0fa71a9687c2951a06d2112b52aa81fdcdcfbc9464d1578326d03fbb205e")
     version('0.5.0', sha256="9014a8a61a8d7ff636866c6e3b1ebb918ff23fa67cf8d4de801c4a2981de8c96")
 
     variant("shared", default=True, description="Build vtk-h as shared libs")
@@ -56,17 +57,17 @@ class VtkH(Package, CudaPackage):
     depends_on("mpi", when="+mpi")
     depends_on("cuda", when="+cuda")
 
-    depends_on("vtk-m@1.5.0~tbb+openmp", when="+openmp")
-    depends_on("vtk-m@1.5.0~tbb~openmp", when="~openmp")
+    depends_on("vtk-m@1.5.2~tbb+openmp", when="+openmp")
+    depends_on("vtk-m@1.5.2~tbb~openmp", when="~openmp")
 
-    depends_on("vtk-m@1.5.0+cuda~tbb+openmp", when="+cuda+openmp")
-    depends_on("vtk-m@1.5.0+cuda~tbb~openmp", when="+cuda~openmp")
+    depends_on("vtk-m@1.5.2+cuda~tbb+openmp", when="+cuda+openmp")
+    depends_on("vtk-m@1.5.2+cuda~tbb~openmp", when="+cuda~openmp")
 
-    depends_on("vtk-m@1.5.0~tbb+openmp~shared", when="+openmp~shared")
-    depends_on("vtk-m@1.5.0~tbb~openmp~shared", when="~openmp~shared")
+    depends_on("vtk-m@1.5.2~tbb+openmp~shared", when="+openmp~shared")
+    depends_on("vtk-m@1.5.2~tbb~openmp~shared", when="~openmp~shared")
 
-    depends_on("vtk-m@1.5.0+cuda~tbb+openmp~shared", when="+cuda+openmp~shared")
-    depends_on("vtk-m@1.5.0+cuda~tbb~openmp~shared", when="+cuda~openmp~shared")
+    depends_on("vtk-m@1.5.2+cuda~tbb+openmp~shared", when="+cuda+openmp~shared")
+    depends_on("vtk-m@1.5.2+cuda~tbb~openmp~shared", when="+cuda~openmp~shared")
 
     def install(self, spec, prefix):
         with working_dir('spack-build', create=True):
