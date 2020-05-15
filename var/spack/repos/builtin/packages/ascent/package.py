@@ -40,7 +40,7 @@ class Ascent(Package, CudaPackage):
     maintainers = ['cyrush']
 
     version('develop',
-            branch='develop',
+            branch='task/2020_05_clover_perf',
             submodules=True)
 
     version('0.5.0', sha256='2837b7371db3ac1bcc31a479d7cf0eb62a503cacadfa4187061502b3c4a89fa0')
@@ -106,15 +106,15 @@ class Ascent(Package, CudaPackage):
     # TPLs for Runtime Features
     #############################
 
-    depends_on("vtk-h@0.5.6",             when="+vtkh")
-    depends_on("vtk-h@0.5.6~openmp",      when="+vtkh~openmp")
-    depends_on("vtk-h@0.5.6+cuda+openmp", when="+vtkh+cuda+openmp")
-    depends_on("vtk-h@0.5.6+cuda~openmp", when="+vtkh+cuda~openmp")
+    depends_on("vtk-h@0.5.7",             when="+vtkh")
+    depends_on("vtk-h@0.5.7~openmp",      when="+vtkh~openmp")
+    depends_on("vtk-h@0.5.7+cuda+openmp", when="+vtkh+cuda+openmp")
+    depends_on("vtk-h@0.5.7+cuda~openmp", when="+vtkh+cuda~openmp")
 
-    depends_on("vtk-h@0.5.6~shared",             when="~shared+vtkh")
-    depends_on("vtk-h@0.5.6~shared~openmp",      when="~shared+vtkh~openmp")
-    depends_on("vtk-h@0.5.6~shared+cuda",        when="~shared+vtkh+cuda")
-    depends_on("vtk-h@0.5.6~shared+cuda~openmp", when="~shared+vtkh+cuda~openmp")
+    depends_on("vtk-h@0.5.7~shared",             when="~shared+vtkh")
+    depends_on("vtk-h@0.5.7~shared~openmp",      when="~shared+vtkh~openmp")
+    depends_on("vtk-h@0.5.7~shared+cuda",        when="~shared+vtkh+cuda")
+    depends_on("vtk-h@0.5.7~shared+cuda~openmp", when="~shared+vtkh+cuda~openmp")
 
     # mfem
     depends_on("mfem+threadsafe+shared+mpi+conduit", when="+shared+mfem+mpi")
