@@ -136,7 +136,7 @@ class Paraview(CMakePackage, CudaPackage):
         elif version < Version('5.8.1'):
             return _urlfmt.format(version.up_to(2), version, '', 'xz')
         else:
-            return "https://data.kitware.com/api/v1/file/5e9f67c59014a6d84e209c0a/download"
+            return "https://data.kitware.com/api/v1/file/5ee275e39014a6d84eb938f2/download"
 
     @property
     def paraview_subdir(self):
