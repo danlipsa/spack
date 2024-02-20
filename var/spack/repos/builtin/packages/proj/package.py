@@ -131,6 +131,8 @@ class CMakeBuilder(BaseBuilder, cmake.CMakeBuilder):
         args = [
             self.define_from_variant("ENABLE_TIFF", "tiff"),
             self.define_from_variant("ENABLE_CURL", "curl"),
+            # projsync needs curl
+            self.define_from_variant("BUILD_PROJSYNC", "curl"),
             self.define_from_variant("BUILD_SHARED_LIBS", "shared"),
             self.define_from_variant("CMAKE_POSITION_INDEPENDENT_CODE", "pic"),
         ]
