@@ -60,6 +60,7 @@ class Proj(CMakePackage, AutotoolsPackage):
     variant("curl", default=True, description="Enable curl support")
     variant("shared", default=True, description="Enable shared libraries")
     variant("pic", default=False, description="Enable position-independent code (PIC)")
+    variant("projsync", default="False", description="Build projsync utility.", when="+curl")
 
     # https://github.com/OSGeo/PROJ#distribution-files-and-format
     # https://github.com/OSGeo/PROJ-data
@@ -133,8 +134,7 @@ class CMakeBuilder(BaseBuilder, cmake.CMakeBuilder):
         args = [
             self.define_from_variant("ENABLE_TIFF", "tiff"),
             self.define_from_variant("ENABLE_CURL", "curl"),
-            # projsync needs curl
-            self.define_from_variant("BUILD_PROJSYNC", "curl"),
+            self.define_from_variant("BUILD_PROJSYNC", "projsync"),
             self.define_from_variant("BUILD_SHARED_LIBS", "shared"),
             self.define_from_variant("CMAKE_POSITION_INDEPENDENT_CODE", "pic"),
         ]
