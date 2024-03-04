@@ -29,6 +29,7 @@ class Cmake(Package):
     license("BSD-3-Clause")
 
     version("master", branch="master")
+    version("3.28.3", sha256="72b7570e5c8593de6ac4ab433b73eab18c5fb328880460c86ce32608141ad5c1")
     version("3.27.9", sha256="609a9b98572a6a5ea477f912cffb973109ed4d0a6a6b3f9e2353d2cdc048708e")
     version("3.27.8", sha256="fece24563f697870fbb982ea8bf17482c9d5f855d8c9bf0b82463d76c9e8d0cc")
     version("3.27.7", sha256="08f71a106036bf051f692760ef9558c0577c42ac39e96ba097e7662bd4158d8e")
@@ -176,6 +177,9 @@ class Cmake(Package):
         description="CMake build type",
         values=("Debug", "Release", "RelWithDebInfo", "MinSizeRel"),
     )
+
+    # TIFF uses TiffConfig.cmake not tiffConfig.cmake
+    patch("find_tiff_capital_first.patch", when="@3.28.0:3.28.3")
 
     # Revert the change that introduced a regression when parsing mpi link
     # flags, see: https://gitlab.kitware.com/cmake/cmake/issues/19516
