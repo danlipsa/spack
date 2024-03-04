@@ -92,7 +92,7 @@ class Proj(CMakePackage, AutotoolsPackage):
 
     # https://proj.org/install.html#build-requirements
     with when("build_system=cmake"):
-        depends_on("cmake@3.9:", when="@6:", type="build")
+        depends_on("cmake@3.8:", when="@5:", type="build")
         depends_on("cmake@3.5:", when="@5", type="build")
         depends_on("cmake@2.6:", when="@:4", type="build")
         # tiff does not set TIFF_INCLUDE_DIR tested by proj
